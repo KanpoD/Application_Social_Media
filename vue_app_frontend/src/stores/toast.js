@@ -1,17 +1,17 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 
 export const useToastStore = defineStore({
-    id:'toast',
+    id: 'toast',
 
     state: () => ({
         ms: 0,
         message: '',
         classes: '',
-        isVisible: flase
+        isVisible: false
     }),
 
-    actions:{
-        showToast(ms, message, classes){
+    actions: {
+        showToast(ms, message, classes) {
             this.ms = parseInt(ms)
             this.message = message
             this.classes = classes
@@ -22,15 +22,12 @@ export const useToastStore = defineStore({
             }, 10)
 
             setTimeout(() => {
-                this.classes = this.classes.replace(' -translate-y-28', '')
-            }, this.ms -500)
+                this.classes = this.classes.replace('-translate-y-28', '')
+            }, this.ms - 500)
 
             setTimeout(() => {
                 this.isVisible = false
             }, this.ms)
         }
-
-        
     }
-
 })

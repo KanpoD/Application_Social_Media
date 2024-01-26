@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-5twy!_-7v&#gc!$xx$9p0#dse2s_$0^@a!2+jvsj=1pan80m)v'
@@ -16,35 +16,33 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+WEBSITE_URL = 'http://127.0.0.1:8000'
 # Application definition
+AUTH_USER_MODEL = 'account.User'
 
-SIMPLE_JWT = { 
-
+SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=180),
     'ROTATE_REFRESH_TOKENS': False,
-
 }
 
 REST_FRAMEWORK = {
-
-    'DEFAULT_AUTHENTIFICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     )
-
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'https://127.0.0.1:5173',
+    "http://localhost:5173",
+    "http://127.0.0.1:8000",
 ]
 
-CORS_TRUSTED_ORIGINS = [
-    'https://127.0.0.1:5173',
-]
+CORS_ALLOWED_ALL_ORIGINS = True
+
+SECURE_SSL_REDIRECT = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -53,9 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account',
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +90,7 @@ WSGI_APPLICATION = 'vue_app_backend.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -102,7 +101,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -121,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
+# https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -133,11 +132,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
