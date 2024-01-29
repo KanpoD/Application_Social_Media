@@ -5,7 +5,7 @@
                 <div class="p-4 bg-white border border-gray-200 text-center rounded-lg">
                     <img src="https://i.pravatar.cc/300?img=70" class="mb-6 rounded-full">
 
-                    <p><strong>Code With Stein</strong></p>
+                    <p><strong>{{data.user.name}}</strong></p>
 
                     <div class="mt-6 flex space-x-8 justify-around">
                         <p class="text-xs text-gray-500">182 friends</p>
@@ -33,7 +33,7 @@
                         <div class="flex items-center space-x-6">
                             <img src="https://i.pravatar.cc/300?img=70" class="w-[40px] rounded-full">
 
-                            <p><strong>Code With Stein</strong></p>
+                            <p><strong>{{data.user.name}}</strong></p>
                         </div>
 
                         <p class="text-gray-600">18 minutes ago</p>
@@ -140,12 +140,19 @@
 import PeopleYouMayKnow from '../components/PeopleYouMayKnow.vue';
 import Trends from '../components/Trends.vue';
 
+import { useUserStore } from '@/stores/user'
+
 export default{
     name: 'FeedView',
     components:{
         PeopleYouMayKnow,
         Trends
-    }
+    },
+    computed: {
+    data() {
+      return useUserStore();
+    },
+  },
 }
 
 </script>
