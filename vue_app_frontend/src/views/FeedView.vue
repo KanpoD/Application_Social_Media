@@ -39,6 +39,12 @@
                         <p class="text-gray-600">18 minutes ago</p>
                     </div>
 
+                    <div class="my-6 flex justify-between" v-for="post in posts" v-bind:key="post.id">
+
+                        
+                        <p>Hello test</p>
+                    </div>
+
                     <img src="https://images.unsplash.com/photo-1661956602868-6ae368943878?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
                         class="w-full rounded-lg">
 
@@ -136,6 +142,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 import PeopleYouMayKnow from '../components/PeopleYouMayKnow.vue';
 import Trends from '../components/Trends.vue';
@@ -148,6 +155,32 @@ export default{
         PeopleYouMayKnow,
         Trends
     },
+    
+    data(){
+        return {
+            posts: []
+        }
+    },
+
+    mounted(){
+        this.getFeed()
+    },
+
+    methods: {
+        getFeed() {
+            axios
+                .get('/api/posts/')
+                .then(response => {
+                    console.log('data', response.data)
+
+                    this.posts = response.data
+                })
+                .catch(error =>{
+                    console.log('error', error)
+                })
+        }
+    },
+
     computed: {
     data() {
       return useUserStore();
