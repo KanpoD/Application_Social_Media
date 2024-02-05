@@ -169,10 +169,9 @@ export default{
     methods: {
         getFeed() {
             axios
-                .get('/api/posts/')
+                .get('/posts')
                 .then(response => {
                     console.log('data', response.data)
-
                     this.posts = response.data
                 })
                 .catch(error =>{
